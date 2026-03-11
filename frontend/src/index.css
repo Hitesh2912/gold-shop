@@ -1,0 +1,498 @@
+:root {
+  /* Core Colors - Malabar Gold Inspired */
+  --bg-color: #ffffff; /* Pure white background */
+  --bg-color-light: #f5f5f5; /* Light gray for sections */
+  --text-primary: #333333; /* Dark gray for primary text */
+  --text-secondary: #666666; /* Lighter gray for secondary text */
+  
+  /* Brand Colors - Pivoted to elegant Dark Charcoal/Slate for cleaner look */
+  --brand-primary: #1A1A1D; /* Deep Charcoal/Black */
+  --brand-secondary: #333333; /* Dark Gray hover */
+  --brand-dark: #000000;
+  
+  /* Gold Accents - More subtle, realistic gold */
+  --gold-primary: #cda86f; 
+  --gold-light: #fdf5ea;
+  
+  /* Borders and UI */
+  --border-light: #e5e5e5;
+  --glass-bg: #ffffff;
+  --glass-border: var(--border-light);
+
+  /* Typography */
+  --font-heading: 'Cinzel', serif; /* A classic serif font for headings similar to Malabar */
+  --font-body: 'Proxima Nova', 'Arial', sans-serif; /* Clean sans-serif for body */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Typography Utility */
+.text-gold {
+  color: var(--gold-primary);
+}
+
+.text-brand {
+  color: var(--brand-primary);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.tracking-wide {
+  letter-spacing: 2px;
+}
+
+/* Components */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+/* Modern Hover Effect */
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(153, 0, 87, 0.06); /* Eggplant tinted shadow */
+  border-color: rgba(153, 0, 87, 0.2);
+}
+
+/* Buttons - Malabar Style */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  color: #fff;
+  background: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  color: var(--brand-primary);
+  background: transparent;
+  border: 1px solid var(--brand-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.btn-outline:hover {
+  background: var(--brand-primary); 
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Sections */
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+/* Utility Layout Classes */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Navbar */
+.top-bar {
+  background-color: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.top-bar-links a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.2s;
+}
+
+.top-bar-links a:hover {
+  color: #fff;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-main {
+  padding: 1rem 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: var(--brand-primary);
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background-color: var(--glass-bg);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 1000;
+  padding: 0.5rem 0;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-color-light);
+  color: var(--brand-primary);
+  padding-left: 24px; /* subtle indent on hover */
+}
+
+/* Hero Section */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+  background-color: var(--bg-color); 
+  background-image: radial-gradient(circle at 75% 30%, rgba(244, 209, 174, 0.4) 0%, transparent 50%); /* Gentle rose gold glow */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  border-radius: 4px;
+}
+
+.hero-subtitle {
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Services / Shop Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+/* Decorative Gold Line */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.brand-line {
+  width: 60px;
+  height: 3px;
+  background: var(--brand-primary);
+  margin: 1rem auto;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1.2rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 1px var(--brand-primary);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Footer */
+.footer {
+  border-top: 3px solid var(--brand-primary);
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--text-primary);
+  background: var(--bg-color-light);
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--brand-primary);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  z-index: 2;
+  border-radius: 4px; /* Update batch radius to match new UI */
+}
+
+/* Trust Elements */
+.trust-badge-row {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.trust-badge {
+  font-size: 0.7rem;
+  color: var(--brand-primary);
+  background: var(--gold-light);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.8rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero-buttons { flex-direction: column; }
+}
+
+/* --- Advanced Animations --- */
+
+/* Cinematic Slow Zoom (Ken Burns) */
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.ken-burns {
+  animation: slowZoom 25s infinite alternate linear;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Staggered Cascading Reveals */
+@keyframes fadeInUpStaggered {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-cascade {
+  animation: fadeInUpStaggered 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0; /* Starts hidden */
+}
+
+/* Generate cascade delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1000 { animation-delay: 1.0s; }
