@@ -9,7 +9,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get('https://gold-shop-backend.onrender.com/api/products');
         setProducts(data);
       } catch (error) {
         console.error('Error fetching products:', error);

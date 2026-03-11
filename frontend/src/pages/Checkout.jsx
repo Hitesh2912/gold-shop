@@ -27,7 +27,7 @@ const Checkout = () => {
 
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+        const { data } = await axios.get(`https://gold-shop-backend.onrender.com/api/products/${productId}`);
         setProduct(data);
         setLoading(false);
       } catch (error) {
@@ -66,7 +66,7 @@ const Checkout = () => {
 
       const finalPaymentMethod = paymentMethod === 'UPI' ? `UPI (${upiId})` : paymentMethod;
 
-      await axios.post('http://localhost:5000/api/orders', {
+      await axios.post('https://gold-shop-backend.onrender.com/api/orders', {
         orderItems: singleOrderItem,
         totalPrice: product.price,
         paymentMethod: finalPaymentMethod,

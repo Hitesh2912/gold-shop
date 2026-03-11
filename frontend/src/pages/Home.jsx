@@ -5,22 +5,22 @@ const slides = [
   {
     id: 1,
     image: 'https://images.unsplash.com/photo-1599643478524-fb66f7f3cb69?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    subtitle: 'The Grand Collection',
-    title: 'Exquisite <br/><span className="text-brand">Bridal Jewellery</span>',
+    subtitle: 'The PARAMPARA Collection',
+    title: 'Exquisite <br/><span style="color: var(--gold-primary); font-weight: 400;">Bridal Jewellery</span>',
     description: 'Celebrate your special day with our masterfully crafted gold and diamond bridal sets, designed to make you shine.'
   },
   {
     id: 2,
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    subtitle: 'Everyday Elegance',
-    title: 'Lightweight <br/><span className="text-gold">Gold Designs</span>',
+    subtitle: 'PARAMPARA Everyday',
+    title: 'Lightweight <br/><span style="color: var(--gold-primary); font-weight: 400;">Gold Designs</span>',
     description: 'Discover our new collection of lightweight, contemporary gold jewelry perfect for your everyday style.'
   },
   {
     id: 3,
     image: 'https://images.unsplash.com/photo-1515562141207-7a8ea4114e17?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    subtitle: 'Solitaire Collection',
-    title: 'Timeless <br/><span className="text-brand">Diamonds</span>',
+    subtitle: 'PARAMPARA Elegance',
+    title: 'Timeless <br/><span style="color: var(--gold-primary); font-weight: 400;">Diamonds</span>',
     description: 'Experience the brilliance of perfectly cut diamonds that capture the essence of forever.'
   }
 ];
@@ -31,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 6000); // Change slide every 6 seconds for a slower, more premium feel
     return () => clearInterval(timer);
   }, []);
 
@@ -57,7 +57,7 @@ const Home = () => {
 
   return (
     <>
-      <section id="home" className="hero" style={{ padding: 0, position: 'relative' }}>
+      <section id="home" className="hero" style={{ padding: 0, position: 'relative', height: '100vh', minHeight: '600px', overflow: 'hidden' }}>
         {slides.map((slide, index) => (
           <div 
             key={slide.id}
@@ -68,42 +68,79 @@ const Home = () => {
               width: '100%',
               height: '100%',
               opacity: currentSlide === index ? 1 : 0,
-              transition: 'opacity 1s ease-in-out',
+              transition: 'opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: currentSlide === index ? 1 : 0,
               display: 'flex',
               alignItems: 'center',
-              backgroundImage: `linear-gradient(to right, rgba(250, 249, 246, 0.95) 0%, rgba(250, 249, 246, 0.7) 40%, rgba(250, 249, 246, 0.2) 100%), url(${slide.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
             }}
           >
-            <div className="container" style={{ width: '100%' }}>
-              <div className="hero-content" style={{ maxWidth: '650px' }}>
-                <span className="hero-subtitle">{slide.subtitle}</span>
-                <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: slide.title }}></h1>
-                <p className="hero-description">{slide.description}</p>
-                <div className="hero-buttons">
-                  <Link to="/shop" className="btn-gold">Explore The Collection</Link>
-                  <Link to="/shop" className="btn-outline">Shop New Arrivals</Link>
+            {/* Background Image with Ken Burns Effect */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url(${slide.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transform: currentSlide === index ? 'scale(1.05)' : 'scale(1)',
+              transition: 'transform 7s ease-out',
+            }} />
+            
+            {/* Elegant Dark Gradient Overlay */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(to right, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.4) 50%, rgba(10, 10, 10, 0.1) 100%)',
+            }} />
+
+            <div className="container" style={{ width: '100%', position: 'relative', zIndex: 2 }}>
+              <div className="hero-content" style={{ 
+                maxWidth: '700px',
+                transform: currentSlide === index ? 'translateY(0)' : 'translateY(30px)',
+                opacity: currentSlide === index ? 1 : 0,
+                transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s',
+                color: '#ffffff'
+              }}>
+                <span className="hero-subtitle" style={{ 
+                  color: 'var(--gold-primary, #D4AF37)', 
+                  letterSpacing: '5px', 
+                  fontSize: '0.9rem',
+                  textTransform: 'uppercase',
+                  display: 'block',
+                  marginBottom: '1rem',
+                  fontWeight: '600'
+                }}>
+                  {slide.subtitle}
+                </span>
+                <h1 className="hero-title" style={{ color: '#ffffff', fontSize: 'clamp(3rem, 5vw, 5rem)', lineHeight: '1.2', marginBottom: '1.5rem', fontWeight: '300', fontFamily: 'var(--font-heading)' }} dangerouslySetInnerHTML={{ __html: slide.title }}></h1>
+                <p className="hero-description" style={{ color: '#f0f0f0', fontSize: '1.15rem', marginBottom: '2.5rem', lineHeight: '1.7', maxWidth: '85%', fontWeight: '300' }}>{slide.description}</p>
+                <div className="hero-buttons" style={{ display: 'flex', gap: '1.5rem' }}>
+                  <Link to="/shop" className="btn-gold" style={{ padding: '1rem 2.5rem', background: 'var(--gold-primary, #D4AF37)', color: '#000', border: 'none', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem', transition: 'all 0.3s ease' }}>Explore Collection</Link>
+                  <Link to="/shop" className="btn-outline" style={{ padding: '1rem 2.5rem', border: '1px solid rgba(255,255,255,0.5)', color: '#fff', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem', transition: 'all 0.3s ease', background: 'transparent' }} onMouseOver={e => { e.target.style.background = '#fff'; e.target.style.color = '#000'; }} onMouseOut={e => { e.target.style.background = 'transparent'; e.target.style.color = '#fff'; }}>Shop Now</Link>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        {/* Slider Controls (Dots) */}
-        <div style={{ position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '10px', zIndex: 10 }}>
+        {/* Slider Controls (Dots) Customizing for better aesthetic */}
+        <div style={{ position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '12px', zIndex: 10 }}>
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               style={{
-                width: currentSlide === idx ? '25px' : '10px',
-                height: '10px',
-                borderRadius: '5px',
-                background: currentSlide === idx ? 'var(--eggplant-primary)' : 'rgba(153, 0, 87, 0.3)',
+                width: currentSlide === idx ? '30px' : '8px',
+                height: '8px',
+                borderRadius: '4px',
+                background: currentSlide === idx ? 'var(--gold-primary, #D4AF37)' : 'rgba(255, 255, 255, 0.4)',
                 border: 'none',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
               aria-label={`Go to slide ${idx + 1}`}
             />

@@ -41,7 +41,7 @@ const Cart = () => {
       
       const finalPaymentMethod = paymentMethod === 'UPI' ? `UPI (${upiId})` : paymentMethod;
 
-      await axios.post('http://localhost:5000/api/orders', {
+      await axios.post('https://gold-shop-backend.onrender.com/api/orders', {
         orderItems: cartItems,
         totalPrice: total,
         paymentMethod: finalPaymentMethod,
