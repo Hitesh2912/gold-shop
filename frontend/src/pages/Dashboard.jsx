@@ -28,7 +28,7 @@ const Dashboard = () => {
     const fetchOrders = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('https://gold-shop-backend.onrender.com/api/orders/all', config);
+        const { data } = await axios.get('http://localhost:5000/api/orders/all', config);
         setOrders(data);
       } catch (error) {
         console.error('Failed to fetch orders', error);
@@ -37,7 +37,7 @@ const Dashboard = () => {
 
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('https://gold-shop-backend.onrender.com/api/products');
+        const { data } = await axios.get('http://localhost:5000/api/products');
         setProducts(data);
       } catch (error) {
         console.error('Failed to fetch products', error);
@@ -53,7 +53,7 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post('https://gold-shop-backend.onrender.com/api/products', {
+      await axios.post('http://localhost:5000/api/products', {
         name, price: Number(price), image, description, countInStock: Number(countInStock)
       }, config);
       alert('Product created successfully');
@@ -67,7 +67,7 @@ const Dashboard = () => {
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`https://gold-shop-backend.onrender.com/api/orders/${orderId}/status`, { status: newStatus }, config);
+      await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, { status: newStatus }, config);
       alert('Order status updated!');
       setOrders(orders.map(o => o._id === orderId ? { ...o, status: newStatus } : o));
     } catch (error) {
@@ -79,7 +79,7 @@ const Dashboard = () => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        await axios.delete(`https://gold-shop-backend.onrender.com/api/products/${productId}`, config);
+        await axios.delete(`http://localhost:5000/api/products/${productId}`, config);
         alert('Product deleted');
         setProducts(products.filter(p => p._id !== productId));
       } catch (error) {

@@ -22,7 +22,7 @@ const Auth = () => {
     try {
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
       const payload = isLogin ? { email, password } : { name, email, password };
-      const { data } = await axios.post(`https://gold-shop-backend.onrender.com${endpoint}`, payload);
+      const { data } = await axios.post(`http://localhost:5000${endpoint}`, payload);
       login(data);
     } catch (error) {
       alert(error.response?.data?.message || 'Authentication failed');
