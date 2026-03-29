@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { useCart } from './context/CartContext';
@@ -17,6 +17,12 @@ function App() {
   const { user, logout } = useAuth();
   const { cartItems } = useCart();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   // Custom navbar scroll logic
   useEffect(() => {
@@ -49,9 +55,9 @@ function App() {
               </Link>
             </div>
             <div className="top-bar-links">
-              <Link to="/store-locator">Store Locator</Link>
+              {/* <Link to="/store-locator">Store Locator</Link>
               <Link to="/track-order">Track Order</Link>
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/contact">Contact Us</Link> */}
             </div>
           </div>
         </div>
@@ -60,7 +66,7 @@ function App() {
         <div className="navbar-main">
           <div className="container nav-container">
             <Link to="/" className="nav-logo">
-              <span className="text-brand">MALABAR</span>
+              <span className="text-brand">PARAMPARA</span>
               <span style={{ fontSize: '1rem', display: 'block', letterSpacing: '1px', color: 'var(--text-secondary)', fontWeight: 400 }}>GOLD & DIAMONDS</span>
             </Link>
             <div className="nav-links">
@@ -127,7 +133,34 @@ function App() {
                   {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                 </span>
               </Link>
+
+              <button 
+                className="mobile-menu-toggle" 
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                &#9776;
+              </button>
             </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Overlay */}
+        <div className={`mobile-nav-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-nav-header">
+            <Link to="/" className="nav-logo" onClick={() => setIsMobileMenuOpen(false)}>
+              <span className="text-brand" style={{ fontSize: '1.5rem' }}>PARAMPARA</span>
+            </Link>
+            <button className="mobile-nav-close" onClick={() => setIsMobileMenuOpen(false)}>
+              &times;
+            </button>
+          </div>
+          <div className="mobile-nav-body">
+            <Link to="/" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+            <Link to="/shop" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Shop Collections</Link>
+            <Link to="/shop?category=Gold" className="mobile-nav-link" style={{ fontSize: '1rem', paddingLeft: '1rem', fontWeight: 400, marginBottom: '1rem' }} onClick={() => setIsMobileMenuOpen(false)}>• Gold Jewellery</Link>
+            <Link to="/shop?category=Diamond" className="mobile-nav-link" style={{ fontSize: '1rem', paddingLeft: '1rem', fontWeight: 400, marginBottom: '1rem' }} onClick={() => setIsMobileMenuOpen(false)}>• Diamond Collection</Link>
+            <Link to="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Our Story</Link>
+            <Link to="/contact" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           </div>
         </div>
       </header>
@@ -156,10 +189,10 @@ function App() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', textAlign: 'left', marginBottom: '3rem' }}>
             <div>
               <Link to="/" className="nav-logo" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>
-                <span className="text-gold">MALABAR</span>
+                <span className="text-gold">PARAMPARA</span>
               </Link>
               <p style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
-                Malabar Gold & Diamonds is the flagship company of Malabar Group. It was established in 1993 in Kozhikode, Kerala.
+                Parampara Gold & Diamonds is the flagship company of Malabar Group. It was established in 1993 in Kozhikode, Kerala.
               </p>
             </div>
             
@@ -196,7 +229,7 @@ function App() {
           </div>
           
           <div style={{ borderTop: '1px solid #333', paddingTop: '2rem', textAlign: 'center', fontSize: '0.85rem' }}>
-            <p>© {new Date().getFullYear()} Malabar Gold & Diamonds. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Parampara Gold & Diamonds. All rights reserved.</p>
           </div>
         </div>
       </footer>

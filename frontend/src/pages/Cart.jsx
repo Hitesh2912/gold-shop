@@ -76,7 +76,7 @@ const Cart = () => {
             <button onClick={() => navigate('/shop')} className="btn-gold">Continue Shopping</button>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '3rem' }}>
+          <div className="grid-mobile-stacked" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '3rem' }}>
             <div>
               {/* Shipping Address Section */}
               <div className="glass-card" style={{ padding: '2rem', marginBottom: '2rem' }}>
@@ -87,7 +87,7 @@ const Cart = () => {
                   <input type="text" name="address" className="form-input" value={shippingAddress.address} onChange={handleAddressChange} required placeholder="123 Luxury Ave, Apt 4B" />
                 </div>
                 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                <div className="grid-mobile-stacked" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
                   <div>
                     <label className="form-label">City</label>
                     <input type="text" name="city" className="form-input" value={shippingAddress.city} onChange={handleAddressChange} required placeholder="New York" />
