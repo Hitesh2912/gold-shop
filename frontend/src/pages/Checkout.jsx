@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const API = import.meta.env.VITE_API_URL;
+
 const Checkout = () => {
   const { id: productId } = useParams();
   const { user } = useAuth();
@@ -27,7 +29,7 @@ const Checkout = () => {
 
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+        const { data } = await axios.get(`${API}/api/products/${productId}`);
         setProduct(data);
         setLoading(false);
       } catch (error) {
@@ -66,7 +68,7 @@ const Checkout = () => {
 
       const finalPaymentMethod = paymentMethod === 'UPI' ? `UPI (${upiId})` : paymentMethod;
 
-      await axios.post('http://localhost:5000/api/orders', {
+      await axios.post(`${API}/api/orders`, {
         orderItems: singleOrderItem,
         totalPrice: product.price,
         paymentMethod: finalPaymentMethod,

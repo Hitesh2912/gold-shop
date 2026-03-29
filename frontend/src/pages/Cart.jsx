@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API = import.meta.env.VITE_API_URL;
+
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
   const { user } = useAuth();
@@ -41,7 +43,7 @@ const Cart = () => {
       
       const finalPaymentMethod = paymentMethod === 'UPI' ? `UPI (${upiId})` : paymentMethod;
 
-      await axios.post('http://localhost:5000/api/orders', {
+      await axios.post(`${API}/api/orders`, {
         orderItems: cartItems,
         totalPrice: total,
         paymentMethod: finalPaymentMethod,

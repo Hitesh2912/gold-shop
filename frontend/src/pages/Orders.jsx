@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API = import.meta.env.VITE_API_URL;
+
 const Orders = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const Orders = () => {
         const config = {
           headers: { Authorization: `Bearer ${user.token}` }
         };
-        const { data } = await axios.get('http://localhost:5000/api/orders/myorders', config);
+        const { data } = await axios.get(`${API}/api/orders/myorders`, config);
         setOrders(data);
       } catch (error) {
         console.error('Error fetching orders', error);
